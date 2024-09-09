@@ -5,11 +5,11 @@ import dto.UserList;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utils.CustomTestListener;
+//import utils.CustomTestListener;
 
 import static io.restassured.RestAssured.*;
 
-@Listeners(CustomTestListener.class)
+//@Listeners(CustomTestListener.class)
 public class ListUsersTest extends BaseTest{
 
     @Test
