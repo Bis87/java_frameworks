@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke Testing" parallel="methods" thread-count="10" data-provider-thread-count="2">
+
+    <test name="Api Tests">
+        <classes>
+            <class name="APITests.ListUsersTest"/>
+            <class name="APITests.SingleUserTest"/>
+        </classes>
+    </test>
+</suite>
