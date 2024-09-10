@@ -1,4 +1,4 @@
-package dto;
+package APITests.Tests.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

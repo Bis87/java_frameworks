@@ -1,12 +1,10 @@
-package APIRequests;
+package APITests.Tests.APIRequests;
 
-import APITests.ListUsersTest;
-import dto.User;
-import dto.UserList;
+import APITests.Tests.dto.User;
+import APITests.Tests.dto.UserList;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 
 
 public class UserAPI extends BaseAPIRequest{

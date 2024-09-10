@@ -2,10 +2,9 @@
 
 <suite name="Smoke Testing" parallel="methods" thread-count="10" data-provider-thread-count="2">
 
-    <test name="Api Tests">
+    <test name="UI Tests">
         <classes>
-            <class name="APITests.Tests.ListUsersTest"/>
-            <class name="APITests.Tests.SingleUserTest"/>
+            <class name="UITests.TestTry"/>
         </classes>
     </test>
 </suite>

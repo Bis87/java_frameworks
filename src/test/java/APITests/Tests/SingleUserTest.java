@@ -1,17 +1,15 @@
-package APITests;
+package APITests.Tests;
 
-import APIRequests.UserAPI;
+import APITests.Tests.APIRequests.UserAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import dto.User;
+import APITests.Tests.dto.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
-public class SingleUserTest extends BaseTest{
+public class SingleUserTest implements BaseTest {
 
     static Logger log = LogManager.getLogger(SingleUserTest.class.getName());
 

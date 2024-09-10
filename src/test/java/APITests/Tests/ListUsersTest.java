@@ -1,16 +1,15 @@
-package APITests;
+package APITests.Tests;
 
-import APIRequests.UserAPI;
-import dto.UserList;
+import APITests.Tests.APIRequests.UserAPI;
+import APITests.Tests.dto.UserList;
 import io.restassured.http.ContentType;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 //import utils.CustomTestListener;
 
 import static io.restassured.RestAssured.*;
 
 //@Listeners(CustomTestListener.class)
-public class ListUsersTest extends BaseTest{
+public class ListUsersTest implements BaseTest {
 
     @Test
     public void testUsers(){

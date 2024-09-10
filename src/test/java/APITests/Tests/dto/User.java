@@ -1,4 +1,4 @@
-package dto;
+package APITests.Tests.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,11 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.Tolerate;
-import lombok.extern.jackson.Jacksonized;
 
-import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
