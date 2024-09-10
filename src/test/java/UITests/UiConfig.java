@@ -47,7 +47,7 @@ public interface UiConfig {
         }
     }
 
-//    @AfterMethod(dependsOnMethods = {"attachScreenshotIfFailed"}, alwaysRun = true)
+    @AfterMethod(dependsOnMethods = {"attachScreenshotIfFailed"}, alwaysRun = true)
     static void closeDriver() {
         Selenide.closeWebDriver();
     }
