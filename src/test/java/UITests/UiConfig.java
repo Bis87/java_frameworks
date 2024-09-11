@@ -24,7 +24,7 @@ public interface UiConfig {
     static void configure() {
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
-        Configuration.baseUrl = "https://onliner.by/";
+//        Configuration.baseUrl = "https://onliner.by/";
         Configuration.timeout = 10000;
         Configuration.pageLoadStrategy = "normal";
         Configuration.pageLoadTimeout = 60000;
@@ -32,13 +32,14 @@ public interface UiConfig {
 //        Configuration.proxyEnabled = true;
         Configuration.browser = "chrome";
         Configuration.reportsFolder = "./test-result/reports";
+        Configuration.browserSize = "1920×1080";
     }
 
 
-    @BeforeMethod()
-    static void goToApp() {
-        Selenide.open(Configuration.baseUrl);
-    }
+//    @BeforeMethod()
+//    static void goToApp() {
+//        Selenide.open(Configuration.baseUrl);
+//    }
 
     @AfterMethod(description = "screenshot", alwaysRun = true, timeOut = 10000)
     static void attachScreenshotIfFailed(ITestResult testResult) {
