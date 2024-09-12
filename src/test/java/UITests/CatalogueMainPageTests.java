@@ -1,18 +1,21 @@
 package UITests;
 
-import UITests.pages.MainPage;
 import UITests.pages.catalogue.CatalogueMainPage;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import UITests.pages.catalogue.CatalogueMainPage.CatalogueCategories;
+import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import static org.assertj.core.api.Assertions.*;
+
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static java.lang.Thread.sleep;
 
 public class CatalogueMainPageTests implements UiConfig {
     static Logger log = LogManager.getLogger(CatalogueMainPageTests.class.getName());
@@ -20,12 +23,12 @@ public class CatalogueMainPageTests implements UiConfig {
 
     @Test
     public void testCatalogueTableOfContentItems() {
-        List<String> expectedItems = Arrays.stream(CatalogueMainPage.CatalogueCategories.values())
-                .map(CatalogueMainPage.CatalogueCategories::toString).toList();
-        List<String> actualItems = new ArrayList<>();
+        List<String> expectedItems = Arrays.stream(CatalogueCategories.values())
+                .map(CatalogueCategories::toString).toList();
 
         CatalogueMainPage catalogueMainPage = new CatalogueMainPage(true);
-        ElementsCollection allCategories = catalogueMainPage.catalogueCategoriesItems;
+        ElementsCollection allCategories = catalogueMainPage.selectedCategoryLeftMenuItems;
+        List<String> actualItems = new ArrayList<>();
         for (SelenideElement el : allCategories) {
             actualItems.add(el.text());
         }
@@ -38,9 +41,21 @@ public class CatalogueMainPageTests implements UiConfig {
     }
 
     @Test
-    public void testCatalogueConstructionItems() {
+    public void testCatalogueConstructionItems() throws InterruptedException {
         CatalogueMainPage catalogueMainPage = new CatalogueMainPage(true);
+        catalogueMainPage.selectCatalogueCategory(CatalogueCategories.CONSTRUCTION);
+//        sleep(5000);
 
+        ElementsCollection categoryItems = catalogueMainPage.selectedCategoryItems
+                .shouldBe(CollectionCondition.sizeGreaterThan(1));
+
+        List<String> actualCategoryItems = categoryItems.stream().map(SelenideElement::text).toList();
+        Set<String> uniqueItems = new HashSet<>(actualCategoryItems);
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(actualCategoryItems.size()).isEqualTo(uniqueItems.size());
+        softAssertions.assertThat(actualCategoryItems).containsAll(uniqueItems);
+        softAssertions.assertAll();
     }
 
     @BeforeMethod

@@ -22,8 +22,8 @@ public interface UiConfig {
 
     @BeforeSuite()
     static void configure() {
-        Configuration.screenshots = false;
-        Configuration.savePageSource = false;
+//        Configuration.screenshots = false;
+//        Configuration.savePageSource = false;
 //        Configuration.baseUrl = "https://onliner.by/";
         Configuration.timeout = 10000;
         Configuration.pageLoadStrategy = "normal";
@@ -33,6 +33,7 @@ public interface UiConfig {
         Configuration.browser = "chrome";
         Configuration.reportsFolder = "./test-result/reports";
         Configuration.browserSize = "1920×1080";
+//        Configuration.savePageSource=true;
     }
 
 

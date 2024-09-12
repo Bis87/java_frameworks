@@ -4,7 +4,11 @@
 
     <test name="UI Tests">
         <classes>
-            <class name="UITests.TestTry"/>
+            <class name="UITests.CatalogueMainPageTests">
+                <methods>
+                    <include name="testCatalogueConstructionItems"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

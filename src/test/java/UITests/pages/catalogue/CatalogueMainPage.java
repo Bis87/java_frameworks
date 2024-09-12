@@ -6,18 +6,27 @@ import com.codeborne.selenide.Selenide;
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class CatalogueMainPage {
     public static String pageURL = "https://catalog.onliner.by/";
-
-    public ElementsCollection catalogueCategoriesItems = $$(By.xpath("//ul[@class='catalog-navigation-classifier']/li//span[@class='catalog-navigation-classifier__item-title-wrapper']"));
-
     CookiePopUp cookiePopUp = new CookiePopUp();
+
+    public ElementsCollection topMenuCatalogCategories = $$(By.xpath("//ul[@class='catalog-navigation-classifier']/li//span[@class='catalog-navigation-classifier__item-title-wrapper']"));
+//    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list__aside-list']//div[@class='catalog-navigation-list__aside-title']"));
+//    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list__aside-list']/div"));
+    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list catalog-navigation-list_active catalog-navigation-list_opened']/div/div/div/div/div"));
+    public ElementsCollection selectedCategoryItems = $$(By.xpath("//span[@class='catalog-navigation-list__dropdown-title']"));
+
+    public void selectSubcategory(String category){
+        $(By.xpath(String.format("//span[@class='catalog-navigation-list__dropdown-data']//span[normalize-space()='%s']", category))).click();
+    }
+
+    public void selectCatalogueCategory(CatalogueCategories category){
+        $(By.xpath(String.format("//span/span[normalize-space()='%s']", category.toString()))).click();
+        // //span/span[normalize-space()='Электроника']
+    }
 
     public void openCataloguePage(boolean isCookiesAccepted){
         Selenide.open(pageURL);
