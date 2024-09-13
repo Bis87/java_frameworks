@@ -22,18 +22,18 @@ public interface UiConfig {
 
     @BeforeSuite()
     static void configure() {
-//        Configuration.screenshots = false;
-//        Configuration.savePageSource = false;
+        Configuration.screenshots = false;
+        Configuration.savePageSource = false;
 //        Configuration.baseUrl = "https://onliner.by/";
         Configuration.timeout = 10000;
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 60000;
         Configuration.fileDownload = FileDownloadMode.FOLDER;
-//        Configuration.proxyEnabled = true;
+        Configuration.proxyEnabled = true;
         Configuration.browser = "chrome";
         Configuration.reportsFolder = "./test-result/reports";
         Configuration.browserSize = "1920×1080";
-//        Configuration.savePageSource=true;
+        Configuration.savePageSource=true;
     }
 
 

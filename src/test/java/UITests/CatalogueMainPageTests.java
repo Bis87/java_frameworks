@@ -27,7 +27,7 @@ public class CatalogueMainPageTests implements UiConfig {
                 .map(CatalogueCategories::toString).toList();
 
         CatalogueMainPage catalogueMainPage = new CatalogueMainPage(true);
-        ElementsCollection allCategories = catalogueMainPage.selectedCategoryLeftMenuItems;
+        ElementsCollection allCategories = catalogueMainPage.topMenuCatalogCategories.shouldBe(CollectionCondition.sizeGreaterThan(0));
         List<String> actualItems = new ArrayList<>();
         for (SelenideElement el : allCategories) {
             actualItems.add(el.text());

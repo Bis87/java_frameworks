@@ -6,7 +6,15 @@
         <classes>
             <class name="UITests.CatalogueMainPageTests">
                 <methods>
+                    <include name="testCatalogueTableOfContentItems"/>
                     <include name="testCatalogueConstructionItems"/>
+                    <include name="testCatalogueLeftMenu"/>
+                </methods>
+            </class>
+            <class name="UITests.MainPageTests">
+                <methods>
+                    <include name="testCookiesDialogueDisplayed"/>
+                    <include name="testCatalogueOpened"/>
                 </methods>
             </class>
         </classes>
