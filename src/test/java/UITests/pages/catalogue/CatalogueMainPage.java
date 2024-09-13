@@ -2,9 +2,13 @@ package UITests.pages.catalogue;
 
 import UITests.pages.CookiePopUp;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.HoverOptions;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
+
+import javax.swing.text.Element;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -14,13 +18,20 @@ public class CatalogueMainPage {
     CookiePopUp cookiePopUp = new CookiePopUp();
 
     public ElementsCollection topMenuCatalogCategories = $$(By.xpath("//ul[@class='catalog-navigation-classifier']/li//span[@class='catalog-navigation-classifier__item-title-wrapper']"));
-//    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list__aside-list']//div[@class='catalog-navigation-list__aside-title']"));
-//    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list__aside-list']/div"));
-    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list catalog-navigation-list_active catalog-navigation-list_opened']/div/div/div/div/div"));
+    public ElementsCollection selectedCategoryLeftMenuItems = $$(By.xpath(".//div[@class='catalog-navigation-list__aside-title']"));
     public ElementsCollection selectedCategoryItems = $$(By.xpath("//span[@class='catalog-navigation-list__dropdown-title']"));
+//    public SelenideElement selectedCategoryItem = $(By.xpath("//span[@class='catalog-navigation-list__dropdown-title' and normalize-space()='%s']"));
 
     public void selectSubcategory(String category){
         $(By.xpath(String.format("//span[@class='catalog-navigation-list__dropdown-data']//span[normalize-space()='%s']", category))).click();
+    }
+
+    public SelenideElement getItemByName(String name){
+        return $(By.xpath(String.format("//span[@class='catalog-navigation-list__dropdown-title' and normalize-space()='%s']", name)));
+    }
+
+    public void hoverOnLeftMenuItem(String item){
+        $(By.xpath(String.format(".//div[@class='catalog-navigation-list__aside-title' and normalize-space()='%s']",item))).hover();
     }
 
     public void selectCatalogueCategory(CatalogueCategories category){
@@ -28,9 +39,7 @@ public class CatalogueMainPage {
         // //span/span[normalize-space()='Электроника']
     }
 
-    public void openCataloguePage(boolean isCookiesAccepted){
-        Selenide.open(pageURL);
-    }
+
 
     public static void goToPage(){
         Selenide.open(pageURL);

@@ -26,7 +26,7 @@ public interface UiConfig {
 //        Configuration.savePageSource = false;
 //        Configuration.baseUrl = "https://onliner.by/";
         Configuration.timeout = 10000;
-        Configuration.pageLoadStrategy = "normal";
+        Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 60000;
         Configuration.fileDownload = FileDownloadMode.FOLDER;
 //        Configuration.proxyEnabled = true;

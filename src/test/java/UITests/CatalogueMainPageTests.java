@@ -41,7 +41,7 @@ public class CatalogueMainPageTests implements UiConfig {
     }
 
     @Test
-    public void testCatalogueConstructionItems() throws InterruptedException {
+    public void testCatalogueConstructionItems() {
         CatalogueMainPage catalogueMainPage = new CatalogueMainPage(true);
         catalogueMainPage.selectCatalogueCategory(CatalogueCategories.CONSTRUCTION);
 //        sleep(5000);
@@ -56,6 +56,41 @@ public class CatalogueMainPageTests implements UiConfig {
         softAssertions.assertThat(actualCategoryItems.size()).isEqualTo(uniqueItems.size());
         softAssertions.assertThat(actualCategoryItems).containsAll(uniqueItems);
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void testCatalogueLeftMenu() throws InterruptedException {
+        CatalogueMainPage catalogueMainPage = new CatalogueMainPage(true);
+        catalogueMainPage.selectCatalogueCategory(CatalogueCategories.ELECTRONIC);
+
+        ElementsCollection leftMenuItems = catalogueMainPage.selectedCategoryLeftMenuItems
+                .shouldBe(CollectionCondition.sizeGreaterThan(1));
+
+//        List<String> leftMenuItemsText = leftMenuItems.stream().map(SelenideElement::text).toList();
+
+        List<List<String>> itemsToVerify = Arrays.asList(
+                Arrays.asList("Мобильные телефоны и аксессуары", "Смартфоны"),
+                Arrays.asList("Телевидение и видео", "Телевизоры"),
+                Arrays.asList("Планшеты, электронные книги", "Планшеты"),
+                Arrays.asList("Аудиотехника", "Наушники"),
+                Arrays.asList("Hi-Fi аудио", "Hi-Fi плееры"),
+                Arrays.asList("Фото- и видеотехника", "Фотоаппараты"),
+                Arrays.asList("Видеоигры", "Игровые приставки"),
+                Arrays.asList("Гаджеты", "Пульсометры"),
+                Arrays.asList("Умный дом и видеонаблюдение", "Датчики"),
+                Arrays.asList("Электрический транспорт", "Гироциклы"),
+                Arrays.asList("Телефония и связь", "Факсы"),
+                Arrays.asList("Музыкальное оборудование", "Аудиоинтерфейсы666"),
+                Arrays.asList("Оптические приборы", "Телескопы")
+                );
+
+        for(List<String> s : itemsToVerify){
+            catalogueMainPage.hoverOnLeftMenuItem(s.get(0));
+            assertThat(catalogueMainPage.getItemByName(s.get(1)).isDisplayed())
+                    .as(String.format("\nleft menu %s\nitem %s",s.get(0), s.get(1) ))
+                    .isEqualTo(true);
+
+        }
     }
 
     @BeforeMethod
