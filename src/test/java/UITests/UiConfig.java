@@ -3,9 +3,11 @@ package UITests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
@@ -22,25 +24,30 @@ public interface UiConfig {
 
     @BeforeSuite()
     static void configure() {
-        Configuration.screenshots = false;
-        Configuration.savePageSource = false;
+//        Configuration.screenshots = false;
+//        Configuration.savePageSource = false;
 //        Configuration.baseUrl = "https://onliner.by/";
         Configuration.timeout = 10000;
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 60000;
         Configuration.fileDownload = FileDownloadMode.FOLDER;
-        Configuration.proxyEnabled = true;
+//        Configuration.proxyEnabled = true;
         Configuration.browser = "chrome";
         Configuration.reportsFolder = "./test-result/reports";
         Configuration.browserSize = "1920×1080";
         Configuration.savePageSource=true;
+
+
+
     }
 
-
-//    @BeforeMethod()
-//    static void goToApp() {
+    @BeforeMethod()
+    static void goToApp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true));
 //        Selenide.open(Configuration.baseUrl);
-//    }
+    }
 
     @AfterMethod(description = "screenshot", alwaysRun = true, timeOut = 10000)
     static void attachScreenshotIfFailed(ITestResult testResult) {
